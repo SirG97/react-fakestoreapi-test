@@ -1,10 +1,21 @@
-// components/ProductCard.js
-import React from 'react';
+'use client'
+import React, { useContext } from 'react';
 import Link from 'next/link';
+import { Store } from '../utils/Store'
+
 const ProductCard = ({ product }) => {
+  const { state, dispatch } = useContext(Store);
+
+  const addToCartHandler = async () => {
+
+    const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+  
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    
+  };
+
   return (
-
-
     <div key={product.id} className="group relative">
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
         <img
@@ -16,15 +27,17 @@ const ProductCard = ({ product }) => {
       <div className="mt-4 flex justify-between">
         <div>
           <h3 className="text-sm text-gray-700">
-            <Link href={`/products/${product.id}`}>
-              <span aria-hidden="true" className="absolute inset-0" />
               {product.title}
-            </Link>
           </h3>
           <p className="mt-1 text-sm text-gray-500">Color</p>
         </div>
         <p className="text-sm font-medium text-gray-900">{product.price}</p>
+        
       </div>
+      <button onClick={addToCartHandler} className="w-full py-3 cursor:pointer text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+         Add to cart
+      </button>
+
     </div>
         
        
@@ -72,4 +85,4 @@ const Example = () => {
 }
 
 
-export default ProductCard;
+export default ProductCard;{/* <Link href={`/products/${product.id}`}> */}

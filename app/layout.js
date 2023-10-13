@@ -1,9 +1,13 @@
-import './globals.css'
-import 'flowbite';
-import { Inter } from 'next/font/google'
-import Navbar from './components/Navbar';
-import { StoreProvider } from './redux/StoreProvider';
+
+import { StoreProvider } from './utils/Store';
+import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] })
+import './globals.css';
+import 'flowbite';
+
+import Navbar from './components/Navbar';
+
+
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,13 +15,14 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+ 
   return (
     <html lang="en">
       <body className={inter.className}>
-      <StoreProvider>
-        <Navbar/>
-        {children}
-      </StoreProvider>
+        <StoreProvider>
+        <Navbar />
+          {children}
+        </StoreProvider>
       </body>
     </html>
   )

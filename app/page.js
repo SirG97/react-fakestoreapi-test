@@ -38,7 +38,7 @@ export default async function Home() {
   const [products, categories] = await Promise.all([productsData, categoriesData]);
 
   const featured = filterFeaturedProduct(products, 7)
-  console.log(products, categories)
+  
    
   return (
     
