@@ -3,6 +3,7 @@ import { Fragment, useState, useContext, useEffect } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Store } from '../utils/Store'
+import Image from 'next/image'
 
 const navigation = {
   categories: [
@@ -152,7 +153,8 @@ export default function Navbar() {
               <div className="ml-4 flex lg:ml-0">
                 <a href="#">
                   <span className="sr-only">Your Company</span>
-                  <img
+                  <Image
+                  width={32}
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt=""
