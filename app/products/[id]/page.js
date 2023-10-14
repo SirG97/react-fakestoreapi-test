@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 
 const p = {
   name: 'Basic Tee 6-Pack',
@@ -63,7 +63,8 @@ export default async function ProductDetails({ params }) {
         <div className="flex flex-col md:flex-row -mx-4">
           <div className="md:flex-1 px-4">
             <div className="h-[460px] rounded-lg bg-white mb-4">
-              <img
+              <Image
+                fill={true}
                 className="w-full h-full object-contain rounded-lg"
                 src={product.image}
                 alt={product.title}

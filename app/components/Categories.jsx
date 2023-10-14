@@ -1,5 +1,5 @@
 import Link from "next/link"
-
+import Image from "next/image";
   const arrangedCategory = (categories) =>{
     const newCategory = [];
     for(let i = 0; i < categories.length; i++){
@@ -63,7 +63,8 @@ import Link from "next/link"
                     {callouts.map((callout) => (
                         <div key={callout.name} className="group relative">
                         <div className="relative h-24 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-2 group-hover:opacity-75 sm:h-32">
-                            <img
+                            <Image
+                            fill={true}
                             src={callout.imageSrc}
                             alt={callout.imageAlt}
                             className="h-full w-full object-cover object-center"

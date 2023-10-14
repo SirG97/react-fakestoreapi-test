@@ -1,6 +1,7 @@
 'use client'
 import React, { useContext } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Store } from '../utils/Store'
 
 const ProductCard = ({ product }) => {
@@ -18,7 +19,8 @@ const ProductCard = ({ product }) => {
   return (
     <div key={product.id} className="group relative">
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
-        <img
+        <Image
+        fill={true}
           src={product.image}
           alt={product.title}
           className="h-full w-full object-contain object-center lg:h-full lg:w-full"
@@ -58,7 +60,8 @@ const Example = () => {
           {products.map((product) => (
             <div key={product.id} className="group relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                <img
+                <Image
+                fill={true}
                   src={product.image}
                   alt={product.title}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
@@ -66,13 +69,13 @@ const Example = () => {
               </div>
               <div className="mt-4 flex justify-between">
                 <div>
-                  <h3 className="text-sm text-gray-700">
+                  <h3 className="text-sm text-gray-700 truncate">
                     <Link to={`/product/${product.id}`}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.title}
                     </Link>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">Color</p>
+                 
                 </div>
                 <p className="text-sm font-medium text-gray-900">{product.price}</p>
               </div>

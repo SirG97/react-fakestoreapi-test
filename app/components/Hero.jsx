@@ -1,4 +1,4 @@
-import HeroImage from '../assets/images/hero.png'
+
 import Image from 'next/image'
 
 export default function Hero(){

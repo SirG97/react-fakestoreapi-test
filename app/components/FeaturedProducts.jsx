@@ -1,6 +1,7 @@
 'use client'
 import React, { useContext } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Store } from '../utils/Store'
 
 function FeaturedProducts({products}) {
@@ -27,7 +28,7 @@ function FeaturedProducts({products}) {
                     <div key={product.id} className="inline-block px-3 relative">
                         <div className="relative w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
                             <Link href={`/products/${product.id}`}>
-                                <img className="p-1 h-64 w-64 object-contain object-center rounded-t-lg" src={product.image} alt="product image" />
+                                <Image fill={true} className="p-1 h-64 w-64 object-contain object-center rounded-t-lg" src={product.image} alt="product image" />
                             </Link>
 
                             <div className="px-1 pb-1 w-full absolute bottom-0 backdrop-brightness-50">
