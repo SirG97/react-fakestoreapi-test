@@ -36,6 +36,7 @@ function reducer(state, action) {
           return { ...state, cart: { ...state.cart, cartItems: updatedCartItems } };
         }
       }
+
       case 'CART_REMOVE_ITEM': {
         const cartItems = state.cart.cartItems.filter(
           (item) => item.id !== action.payload.id
@@ -43,6 +44,43 @@ function reducer(state, action) {
         Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
         return { ...state, cart: { ...state.cart, cartItems } };
       }
+
+      case 'CART_INCREMENT_QUANTITY':{
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            cartItems: state.cart.cartItems.map((item) => {
+              if (item.id === action.payload.id) {
+                return {
+                  ...item,
+                  quantity: item.quantity + 1,
+                };
+              }
+              return item;
+            }),
+          },
+        };
+      }
+
+      case 'CART_DECREMENT_QUANTITY':{
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            cartItems: state.cart.cartItems.map((item) => {
+              if (item.id === action.payload.id) {
+                return {
+                  ...item,
+                  quantity: item.quantity - 1,
+                };
+              }
+              return item;
+            }),
+          },
+        };
+      }
+
       case 'CART_RESET':
         return {
           ...state,

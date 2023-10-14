@@ -9,7 +9,7 @@ import Image from "next/image";
                 description: 'Essentials home appliances',
                 imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg',
                 imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
-                href: 'https://fakestoreapi.com/products/category/electronics',
+                href: '/products/category/electronics',
               })
         }else if(categories[i] == 'jewelery'){
             newCategory.push(  {
@@ -17,7 +17,7 @@ import Image from "next/image";
                 description: 'Jeweleries that look good on you',
                 imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
                 imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
-                href: 'https://fakestoreapi.com/products/category/jewelery',
+                href: '/products/category/jewelery',
               })
         }else if(categories[i] == 'men\'s clothing'){
             newCategory.push(  {
@@ -25,7 +25,7 @@ import Image from "next/image";
                 description: 'Essentials home appliances',
                 imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-03-category-01.jpg',
                 imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
-                href: 'https://fakestoreapi.com/products/category/men\'s clothing',
+                href: '/products/category/men\'s clothing',
               })
         }else if(categories[i] == 'women\'s clothing'){
             newCategory.push(  {
@@ -33,7 +33,7 @@ import Image from "next/image";
                 description: 'Awesome women clothing',
                 imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-03-featured-category.jpg',
                 imageAlt: 'Collection of women clothing that looks great shelf.',
-                href: 'https://fakestoreapi.com/products/category/women\'s clothing',
+                href: '/products/category/women\'s clothing',
               })
         }else{
             newCategory.push(  {
@@ -71,10 +71,10 @@ import Image from "next/image";
                             />
                         </div>
                         <h3 className="mt-6 text-sm text-gray-500">
-                            <a href={callout.href}>
+                            <Link href={callout.href}>
                             <span className="absolute inset-0" />
                             {callout.name}
-                            </a>
+                            </Link>
                         </h3>
                         <p className="text-base font-semibold text-gray-900">{callout.description}</p>
                         </div>

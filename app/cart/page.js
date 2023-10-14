@@ -15,7 +15,10 @@ const Cart = () => {
   };
 
   const decrementQuantityHandler = (product) => {
-    dispatch({ type: 'CART_DECREMENT_QUANTITY', payload: product });
+    if(product.quantity > 1){
+        dispatch({ type: 'CART_DECREMENT_QUANTITY', payload: product });
+    }
+   
   };
 
   const calculateTotalPrice = () => {
@@ -50,6 +53,7 @@ const Cart = () => {
                 </button>
               </div>
               <button
+              
                 onClick={() => removeFromCartHandler(item)}
                 className="text-white bg-red-500 hover:bg-red-700 rounded-lg px-4 py-2"
               >

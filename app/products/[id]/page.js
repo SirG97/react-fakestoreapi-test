@@ -1,5 +1,8 @@
+'use client'
+import React, { useContext } from 'react';
 import Image from "next/image";
-
+import { toast } from 'react-toastify';
+import { Store } from '@/app/utils/Store'
 const p = {
   name: 'Basic Tee 6-Pack',
   price: '$192',
@@ -55,16 +58,27 @@ const getProduct =  async (id) => {
 
 }
 
-export default async function ProductDetails({ params }) {
-    const product = await getProduct(params.id); 
+export default function ProductDetails({ params }) {
+    const product =  getProduct(params.id); 
+    const { state, dispatch } = useContext(Store);
+
+    const addToCartHandler =  () => {
+  
+      dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: 1 } });
+         // Show a success toast notification
+         toast.success('Item added to the cart!', {
+          position: 'top-right',
+          autoClose: 3000, // Auto-close the notification after 3 seconds
+      });
+  
+    };
   return (
     <div className="bg-gray-100 py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row -mx-4">
           <div className="md:flex-1 px-4">
             <div className="h-[460px] rounded-lg bg-white mb-4">
-              <Image
-                fill={true}
+              <img
                 className="w-full h-full object-contain rounded-lg"
                 src={product.image}
                 alt={product.title}
@@ -80,13 +94,13 @@ export default async function ProductDetails({ params }) {
             <div className="flex mb-4">
               <div className="mr-4">
                 <span className="font-bold text-gray-700">Price:</span>
-                <span className="text-md font-medium">${product.price}</span>
+                <span className="text-md font-medium">${product.price.toFixed(2)}</span>
               </div>
             
             </div>
             <div className="mb-4">
               <div className="flex items-center mt-2">
-                <button className="bg-pink-700 text-white rounded-lg py-2 px-3 mr-2">Add to cart</button>
+                <button onClick={addToCartHandler} className="bg-pink-700 text-white rounded-lg py-2 px-3 mr-2">Add to cart</button>
               </div>
             </div>
           

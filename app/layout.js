@@ -4,7 +4,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] })
 import './globals.css';
 import 'flowbite';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
 
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
         <StoreProvider>
         <Navbar />
           {children}
+          <ToastContainer />
         </StoreProvider>
       </body>
     </html>
