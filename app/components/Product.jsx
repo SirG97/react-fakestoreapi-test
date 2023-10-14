@@ -19,8 +19,7 @@ const ProductCard = ({ product }) => {
   return (
     <div key={product.id} className="group relative">
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
-        <Image
-        fill={true}
+        <img
           src={product.image}
           alt={product.title}
           className="h-full w-full object-contain object-center lg:h-full lg:w-full"
@@ -60,8 +59,7 @@ const Example = () => {
           {products.map((product) => (
             <div key={product.id} className="group relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                <Image
-                fill={true}
+                <img
                   src={product.image}
                   alt={product.title}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
@@ -88,4 +86,4 @@ const Example = () => {
 }
 
 
-export default ProductCard;{/* <Link href={`/products/${product.id}`}> */}
+export default ProductCard;

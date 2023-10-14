@@ -8,12 +8,12 @@ function FeaturedProducts({products}) {
     const { state, dispatch } = useContext(Store);
     const addToCartHandler = async (product) => {
         
-        const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
-        const quantity = existItem ? existItem.quantity + 1 : 1;
+        // const existItem = state.cart.cartItems.find((x) => x.id === product.id);
+        // const quantity = existItem ? existItem.quantity + 1 : 1;
         // const { data } = await axios.get(`/api/products/${product._id}`);
       
       
-        dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+        dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: 1 } });
         
       };
     return (

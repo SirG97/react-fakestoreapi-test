@@ -11,20 +11,34 @@ function reducer(state, action) {
     switch (action.type) {
       case 'CART_ADD_ITEM': {
         const newItem = action.payload;
-        const existItem = state.cart.cartItems.find(
-          (item) => item.slug === newItem.slug
+        const existItemIndex = state.cart.cartItems.findIndex(
+          (item) => item.id === newItem.id
         );
-        const cartItems = existItem
-          ? state.cart.cartItems.map((item) =>
-              item.name === existItem.name ? newItem : item
-            )
-          : [...state.cart.cartItems, newItem];
-        Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
-        return { ...state, cart: { ...state.cart, cartItems } };
+        console.log(existItemIndex);
+      
+        if (existItemIndex !== -1) {
+          // Item already exists in the cart
+          const updatedCartItems = [...state.cart.cartItems];
+          updatedCartItems[existItemIndex] = {
+            ...updatedCartItems[existItemIndex],
+            quantity: updatedCartItems[existItemIndex].quantity + newItem.quantity,
+          };
+      
+          Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems: updatedCartItems }));
+      
+          return { ...state, cart: { ...state.cart, cartItems: updatedCartItems } };
+        } else {
+          // Item does not exist in the cart
+          const updatedCartItems = [...state.cart.cartItems, newItem];
+      
+          Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems: updatedCartItems }));
+      
+          return { ...state, cart: { ...state.cart, cartItems: updatedCartItems } };
+        }
       }
       case 'CART_REMOVE_ITEM': {
         const cartItems = state.cart.cartItems.filter(
-          (item) => item.slug !== action.payload.slug
+          (item) => item.id !== action.payload.id
         );
         Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
         return { ...state, cart: { ...state.cart, cartItems } };
